@@ -29,12 +29,9 @@ npx tsc --noEmit
 Stack: TanStack Start (React 19, file-based routing), Vite, Tailwind CSS 4,
 shadcn/Radix UI components in `src/components/ui`.
 
-## Known issue carried over from the original project
+## Notes
 
-The Rhea logo (`src/assets/rhea-logo.png.asset.json`) is a Lovable-hosted
-asset pointer — its URL (`/__l5e/assets-v1/…`) only resolves inside Lovable's
-hosting. Drop the real `rhea-logo.png` into `src/assets/` and update the
-import in `src/components/clinik/Logo.tsx` before deploying anywhere else.
+The Rhea logo is the real file (`src/assets/rhea-logo.png`, supplied 2026-11-11).
 
 Auth is a demo mock (`src/lib/auth.ts`, localStorage only, no backend) —
 that is how the original project worked; wiring a real backend is future work.
