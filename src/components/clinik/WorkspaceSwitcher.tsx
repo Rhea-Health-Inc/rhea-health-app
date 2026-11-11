@@ -97,7 +97,7 @@ export function WorkspaceSwitcher({ collapsed = false }: { collapsed?: boolean }
               role="option"
               aria-selected={current === w.id}
               onClick={() => choose(w.id)}
-              className="w-full flex items-start gap-2.5 px-2.5 py-2.5 rounded-lg text-left hover:bg-muted transition"
+              className="w-full flex items-start gap-2.5 px-2.5 py-2.5 rounded-full text-left hover:bg-muted transition"
             >
               <w.icon className="w-4 h-4 mt-0.5 text-primary shrink-0" />
               <span className="min-w-0 flex-1">

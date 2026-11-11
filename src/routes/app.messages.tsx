@@ -67,7 +67,7 @@ function Messages() {
 
         <div className="p-4 border-t border-border/70">
           <div className="flex items-center gap-2 rounded-2xl hairline bg-card px-4 py-3">
-            <button className="text-muted-foreground hover:text-foreground">
+            <button className="rounded-full p-1.5 -m-1 text-muted-foreground hover:text-foreground hover:bg-muted transition">
               <Paperclip className="w-4 h-4" />
             </button>
             <input

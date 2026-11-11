@@ -125,7 +125,7 @@ function AppLayout() {
           <Search aria-hidden className="w-3.5 h-3.5 shrink-0" />
           {!collapsed && <span>Search…</span>}
           {!collapsed && (
-            <span className="ml-auto text-[14px] px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground">
+            <span className="ml-auto text-[14px] px-1.5 py-0.5 rounded-lg bg-muted text-muted-foreground">
               ⌘K
             </span>
           )}
@@ -150,7 +150,7 @@ function AppLayout() {
                         key={n.to}
                         to={n.to}
                         title={collapsed ? n.label : undefined}
-                        className={`relative flex items-center ${collapsed ? "justify-center px-0" : "px-3"} gap-3 h-10 rounded-lg text-[14px] transition ${
+                        className={`relative flex items-center ${collapsed ? "justify-center px-0" : "px-3"} gap-3 h-10 rounded-full text-[14px] transition ${
                           active
                             ? "bg-primary/10 text-primary font-medium"
                             : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -180,7 +180,7 @@ function AppLayout() {
             <div className="text-[14px] text-foreground truncate">{CLINICIAN.hospital}</div>
           </div>
           <div
-            className={`flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition cursor-pointer ${collapsed ? "justify-center" : ""}`}
+            className={`flex items-center gap-3 px-3 py-2 rounded-full hover:bg-muted transition cursor-pointer ${collapsed ? "justify-center" : ""}`}
           >
             <img
               src={CLINICIAN.photo}
@@ -195,7 +195,7 @@ function AppLayout() {
             )}
             <button
               aria-label="Notifications"
-              className={`relative text-muted-foreground hover:text-foreground ${collapsed ? "hidden" : ""}`}
+              className={`relative rounded-full p-1.5 -m-1 hover:bg-muted text-muted-foreground hover:text-foreground transition ${collapsed ? "hidden" : ""}`}
             >
               <Bell className="w-4 h-4" />
               <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-primary" />
@@ -203,13 +203,13 @@ function AppLayout() {
           </div>
           <div className="flex items-center gap-1">
             <button
-              className={`flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted transition inline-flex items-center gap-2 ${collapsed ? "hidden" : ""}`}
+              className={`flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-full hover:bg-muted transition inline-flex items-center gap-2 ${collapsed ? "hidden" : ""}`}
             >
               <LifeBuoy className="w-3.5 h-3.5" /> Help
             </button>
             <button
               onClick={handleSignOut}
-              className="flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-muted transition inline-flex items-center gap-2"
+              className="flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-full hover:bg-muted transition inline-flex items-center gap-2"
             >
               <LogOut className="w-3.5 h-3.5 shrink-0" /> {!collapsed && "Sign out"}
             </button>
@@ -287,7 +287,7 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
             aria-label="Search patients, notes, doctors, messages"
             className="flex-1 bg-transparent text-sm outline-none"
           />
-          <span className="text-[14px] px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground">
+          <span className="text-[14px] px-1.5 py-0.5 rounded-lg bg-muted text-muted-foreground">
             ESC
           </span>
         </div>

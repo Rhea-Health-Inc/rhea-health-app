@@ -149,7 +149,7 @@ function AdminLayout() {
                   key={n.to}
                   to={n.to}
                   title={collapsed ? n.label : undefined}
-                  className={`relative flex items-center ${collapsed ? "justify-center px-0" : "px-3"} gap-3 h-10 rounded-lg text-[14px] transition ${
+                  className={`relative flex items-center ${collapsed ? "justify-center px-0" : "px-3"} gap-3 h-10 rounded-full text-[14px] transition ${
                     active
                       ? "bg-primary/10 text-primary font-medium"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -178,7 +178,7 @@ function AdminLayout() {
           </div>
           <Link
             to="/app"
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-[14px] text-muted-foreground hover:text-foreground hover:bg-muted transition ${
+            className={`flex items-center gap-2 px-3 py-2 rounded-full text-[14px] text-muted-foreground hover:text-foreground hover:bg-muted transition ${
               collapsed ? "justify-center" : ""
             }`}
           >

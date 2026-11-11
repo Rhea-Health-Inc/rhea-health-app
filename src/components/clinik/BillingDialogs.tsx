@@ -964,7 +964,7 @@ export function AddSeatDialog({
           <button
             aria-label="Decrease additional seats"
             onClick={() => setAdditional((a) => Math.max(1, a - 1))}
-            className="w-11 h-11 rounded-xl hairline bg-card text-[18px] hover:bg-muted transition"
+            className="w-11 h-11 rounded-full hairline bg-card text-[18px] hover:bg-muted transition"
           >
             -
           </button>
@@ -981,7 +981,7 @@ export function AddSeatDialog({
           <button
             aria-label="Increase additional seats"
             onClick={() => setAdditional((a) => a + 1)}
-            className="w-11 h-11 rounded-xl hairline bg-card text-[18px] hover:bg-muted transition"
+            className="w-11 h-11 rounded-full hairline bg-card text-[18px] hover:bg-muted transition"
           >
             +
           </button>

@@ -378,7 +378,7 @@ function Input({
       value={v}
       placeholder={placeholder}
       onChange={(e) => on(e.target.value)}
-      className="w-full h-10 rounded-lg hairline bg-card px-3 text-[14px] text-foreground outline-none focus:border-primary transition"
+      className="w-full h-10 rounded-xl hairline bg-card px-3 text-[14px] text-foreground outline-none focus:border-primary transition"
     />
   );
 }

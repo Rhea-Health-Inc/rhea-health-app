@@ -203,7 +203,7 @@ function ModalPanel({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="text-muted-foreground hover:text-foreground transition"
+            className="rounded-full p-1.5 -m-1 text-muted-foreground hover:text-foreground hover:bg-muted transition"
           >
             <X className="w-5 h-5" />
           </button>

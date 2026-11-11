@@ -118,7 +118,7 @@ export function TranscriptSync() {
                     setDirty(true);
                   }}
                   rows={2}
-                  className="mt-1 w-full resize-y bg-transparent text-[14px] text-foreground/90 outline-none rounded-md px-2 py-1 hover:bg-muted/50 focus:bg-muted/50 focus:ring-1 focus:ring-primary/40 transition placeholder:text-muted-foreground/70 disabled:opacity-50"
+                  className="mt-1 w-full resize-y bg-transparent text-[14px] text-foreground/90 outline-none rounded-lg px-2 py-1 hover:bg-muted/50 focus:bg-muted/50 focus:ring-1 focus:ring-primary/40 transition placeholder:text-muted-foreground/70 disabled:opacity-50"
                 />
               </div>
             ))}

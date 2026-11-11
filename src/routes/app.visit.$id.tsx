@@ -821,7 +821,7 @@ function SoapEditor({
   return (
     <div className="rounded-2xl bg-card hairline p-6 hover:shadow-[var(--shadow-clinik)] transition">
       <div className="flex items-center gap-3 mb-3">
-        <span className="w-7 h-7 rounded-lg bg-primary/10 text-primary text-[14px] font-semibold flex items-center justify-center">
+        <span className="w-7 h-7 rounded-xl bg-primary/10 text-primary text-[14px] font-semibold flex items-center justify-center">
           {letter}
         </span>
         <div className="text-[14px] font-medium">{title}</div>

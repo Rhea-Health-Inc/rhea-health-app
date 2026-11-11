@@ -258,7 +258,7 @@ function EditProfile() {
                     onChange={(e) => setTzQuery(e.target.value)}
                     onBlur={() => window.setTimeout(() => setTzOpen(false), 120)}
                     placeholder="Search time zones"
-                    className="w-full h-10 rounded-lg hairline bg-card px-3 text-[14px] text-foreground outline-none focus:border-primary transition"
+                    className="w-full h-10 rounded-xl hairline bg-card px-3 text-[14px] text-foreground outline-none focus:border-primary transition"
                   />
                   {tzOpen && (
                     <div className="absolute z-20 mt-1 w-full max-h-56 overflow-auto rounded-xl bg-card hairline shadow-[var(--shadow-clinik)] py-1">
@@ -297,7 +297,7 @@ function EditProfile() {
               onChange={(e) => update("bio", e.target.value)}
               rows={5}
               placeholder="A short biography shown alongside your profile (optional)."
-              className="w-full rounded-lg hairline bg-card px-3 py-2.5 text-[14px] text-foreground outline-none focus:border-primary transition resize-y"
+              className="w-full rounded-xl hairline bg-card px-3 py-2.5 text-[14px] text-foreground outline-none focus:border-primary transition resize-y"
             />
             <div className="text-[12px] text-muted-foreground text-right mt-1">
               {form.bio.length} / {BIO_MAX} characters
@@ -453,7 +453,7 @@ function Input({
       onBlur={onBlur}
       onChange={(e) => on(e.target.value)}
       aria-invalid={invalid}
-      className={`w-full h-10 rounded-lg bg-card px-3 text-[14px] text-foreground outline-none transition ${
+      className={`w-full h-10 rounded-xl bg-card px-3 text-[14px] text-foreground outline-none transition ${
         invalid ? "border border-destructive" : "hairline focus:border-primary"
       }`}
     />
@@ -464,7 +464,7 @@ function Select({ v, on, options }: { v: string; on: (v: string) => void; option
     <select
       value={v}
       onChange={(e) => on(e.target.value)}
-      className="w-full h-10 rounded-lg hairline bg-card px-3 text-[14px] text-foreground outline-none focus:border-primary transition"
+      className="w-full h-10 rounded-xl hairline bg-card px-3 text-[14px] text-foreground outline-none focus:border-primary transition"
     >
       {options.map((o) => (
         <option key={o} value={o}>

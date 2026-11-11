@@ -25,7 +25,7 @@ function Sessions() {
             params={{ id: a.id }}
             className={`flex items-center gap-4 px-6 py-5 hover:bg-muted/60 transition ${i > 0 ? "border-t border-border/70" : ""}`}
           >
-            <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
               <Mic className="w-4 h-4" />
             </div>
             <img src={a.patient.photo} alt="" className="w-9 h-9 rounded-full object-cover" />

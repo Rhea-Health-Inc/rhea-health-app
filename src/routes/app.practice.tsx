@@ -516,7 +516,7 @@ function PracticePage() {
                         updateMember(m.id, { role: e.target.value as OrgRole });
                         toast.success("Role updated.");
                       }}
-                      className="h-9 rounded-lg hairline bg-card px-2.5 text-[14px] capitalize disabled:opacity-60"
+                      className="h-9 rounded-xl hairline bg-card px-2.5 text-[14px] capitalize disabled:opacity-60"
                     >
                       <option value="owner">Owner</option>
                       <option value="admin">Admin</option>
