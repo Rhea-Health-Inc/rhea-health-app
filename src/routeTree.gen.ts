@@ -38,6 +38,7 @@ import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppSettingsIndexRouteImport } from './routes/app.settings.index'
 import { Route as AppSettingsAiDocumentationRouteImport } from './routes/app.settings.ai-documentation'
 import { Route as AppSettingsAppearanceRouteImport } from './routes/app.settings.appearance'
+import { Route as AppSettingsDevicesRouteImport } from './routes/app.settings.devices'
 import { Route as AppSettingsIntegrationsRouteImport } from './routes/app.settings.integrations'
 import { Route as AppSettingsPrivacyRouteImport } from './routes/app.settings.privacy'
 import { Route as AppSettingsProfileRouteImport } from './routes/app.settings.profile'
@@ -190,6 +191,11 @@ const AppSettingsAppearanceRoute = AppSettingsAppearanceRouteImport.update({
   path: '/appearance',
   getParentRoute: () => AppSettingsRoute,
 } as any)
+const AppSettingsDevicesRoute = AppSettingsDevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
+  getParentRoute: () => AppSettingsRoute,
+} as any)
 const AppSettingsIntegrationsRoute = AppSettingsIntegrationsRouteImport.update({
   id: '/integrations',
   path: '/integrations',
@@ -245,6 +251,7 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AppIndexRoute
   '/app/settings/ai-documentation': typeof AppSettingsAiDocumentationRoute
   '/app/settings/appearance': typeof AppSettingsAppearanceRoute
+  '/app/settings/devices': typeof AppSettingsDevicesRoute
   '/app/settings/integrations': typeof AppSettingsIntegrationsRoute
   '/app/settings/privacy': typeof AppSettingsPrivacyRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
@@ -278,6 +285,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppIndexRoute
   '/app/settings/ai-documentation': typeof AppSettingsAiDocumentationRoute
   '/app/settings/appearance': typeof AppSettingsAppearanceRoute
+  '/app/settings/devices': typeof AppSettingsDevicesRoute
   '/app/settings/integrations': typeof AppSettingsIntegrationsRoute
   '/app/settings/privacy': typeof AppSettingsPrivacyRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
@@ -315,6 +323,7 @@ export interface FileRoutesById {
   '/app/': typeof AppIndexRoute
   '/app/settings/ai-documentation': typeof AppSettingsAiDocumentationRoute
   '/app/settings/appearance': typeof AppSettingsAppearanceRoute
+  '/app/settings/devices': typeof AppSettingsDevicesRoute
   '/app/settings/integrations': typeof AppSettingsIntegrationsRoute
   '/app/settings/privacy': typeof AppSettingsPrivacyRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
@@ -353,6 +362,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/app/settings/ai-documentation'
     | '/app/settings/appearance'
+    | '/app/settings/devices'
     | '/app/settings/integrations'
     | '/app/settings/privacy'
     | '/app/settings/profile'
@@ -386,6 +396,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/settings/ai-documentation'
     | '/app/settings/appearance'
+    | '/app/settings/devices'
     | '/app/settings/integrations'
     | '/app/settings/privacy'
     | '/app/settings/profile'
@@ -422,6 +433,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/app/settings/ai-documentation'
     | '/app/settings/appearance'
+    | '/app/settings/devices'
     | '/app/settings/integrations'
     | '/app/settings/privacy'
     | '/app/settings/profile'
@@ -644,6 +656,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsAppearanceRouteImport
       parentRoute: typeof AppSettingsRoute
     }
+    '/app/settings/devices': {
+      id: '/app/settings/devices'
+      path: '/devices'
+      fullPath: '/app/settings/devices'
+      preLoaderRoute: typeof AppSettingsDevicesRouteImport
+      parentRoute: typeof AppSettingsRoute
+    }
     '/app/settings/integrations': {
       id: '/app/settings/integrations'
       path: '/integrations'
@@ -715,6 +734,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 interface AppSettingsRouteChildren {
   AppSettingsAiDocumentationRoute: typeof AppSettingsAiDocumentationRoute
   AppSettingsAppearanceRoute: typeof AppSettingsAppearanceRoute
+  AppSettingsDevicesRoute: typeof AppSettingsDevicesRoute
   AppSettingsIntegrationsRoute: typeof AppSettingsIntegrationsRoute
   AppSettingsPrivacyRoute: typeof AppSettingsPrivacyRoute
   AppSettingsProfileRoute: typeof AppSettingsProfileRoute
@@ -725,6 +745,7 @@ interface AppSettingsRouteChildren {
 const AppSettingsRouteChildren: AppSettingsRouteChildren = {
   AppSettingsAiDocumentationRoute: AppSettingsAiDocumentationRoute,
   AppSettingsAppearanceRoute: AppSettingsAppearanceRoute,
+  AppSettingsDevicesRoute: AppSettingsDevicesRoute,
   AppSettingsIntegrationsRoute: AppSettingsIntegrationsRoute,
   AppSettingsPrivacyRoute: AppSettingsPrivacyRoute,
   AppSettingsProfileRoute: AppSettingsProfileRoute,

@@ -20,6 +20,11 @@ const CARDS = [
   },
   { title: "Recording", desc: "Microphone, ambient sensitivity, storage retention.", to: null },
   {
+    title: "Devices",
+    desc: "Connect and manage your Rhea recording devices.",
+    to: "/app/settings/devices" as const,
+  },
+  {
     title: "Integrations",
     desc: "Connect EHR, calendar, and secure messaging.",
     to: "/app/settings/integrations" as const,
