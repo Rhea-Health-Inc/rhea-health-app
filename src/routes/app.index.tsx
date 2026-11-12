@@ -13,11 +13,17 @@ export const Route = createFileRoute("/app/")({
 });
 
 function Home() {
-  const surname = CLINICIAN.name.split(" ")[1] ?? CLINICIAN.name;
+  // CLINICIAN.name includes the "Dr." title ("Dr. Sarah Chen") — greet by surname.
+  const surname =
+    CLINICIAN.name
+      .replace(/^Dr\.\s*/, "")
+      .split(" ")
+      .at(-1) ?? CLINICIAN.name;
 
   return (
     <div className="max-w-6xl mx-auto px-12 py-14 space-y-16">
       <PageHeader
+        className="mb-16"
         breadcrumb={[{ label: "Workspace", to: "/app" }, { label: "Home" }]}
         title={`Good morning, Dr. ${surname}.`}
         description="Here's your day at a glance. Rhea has prepared drafts for your first two patients."
@@ -40,7 +46,7 @@ function Home() {
         <TranscriptSync />
       </div>
 
-      <aside className="rounded-2xl bg-primary/[0.04] hairline p-8 flex items-start gap-4">
+      <aside className="rounded-2xl bg-primary/[0.06] hairline p-8 flex items-center gap-4">
         <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
           <Sparkles aria-hidden className="w-4 h-4" />
         </div>
@@ -55,7 +61,7 @@ function Home() {
         </div>
         <Link
           to="/app/documentation"
-          className="text-[14px] text-primary hover:underline whitespace-nowrap"
+          className="text-[14px] text-primary hover:underline whitespace-nowrap shrink-0"
         >
           Review drafts →
         </Link>

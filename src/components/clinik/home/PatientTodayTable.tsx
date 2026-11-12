@@ -89,7 +89,7 @@ export function PatientTodayTable() {
             key={a.id}
             to="/app/visit/$id"
             params={{ id: a.id }}
-            className={`${GRID} items-center px-6 py-4 hover:bg-muted/60 transition ${
+            className={`${GRID} items-start px-6 py-4 hover:bg-muted/60 transition ${
               i > 0 ? "border-t border-border/70" : ""
             }`}
           >
@@ -113,12 +113,15 @@ export function PatientTodayTable() {
                 </div>
               </div>
             </div>
-            <div className="text-[14px] text-foreground truncate">{a.reason}</div>
-            <div className="text-[14px] text-muted-foreground truncate">{a.room}</div>
-            <div>
+            <div className="text-[14px] text-foreground truncate pt-[1px]">{a.reason}</div>
+            <div className="text-[14px] text-muted-foreground truncate pt-[1px]">{a.room}</div>
+            <div className="pt-[1px]">
               <StatusPill status={a.status} />
             </div>
-            <ChevronRight aria-hidden className="w-4 h-4 text-muted-foreground justify-self-end" />
+            <ChevronRight
+              aria-hidden
+              className="w-4 h-4 text-muted-foreground justify-self-end mt-[3px]"
+            />
           </Link>
         ))}
       </div>

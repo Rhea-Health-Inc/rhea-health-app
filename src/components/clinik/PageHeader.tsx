@@ -34,14 +34,17 @@ export function PageHeader({
   title,
   description,
   actions,
+  className = "mb-10",
 }: {
   breadcrumb: Crumb[];
   title: string;
   description?: string;
   actions?: ReactNode;
+  /** Bottom margin utility; pages with their own section rhythm override it (Home uses "mb-16" to match its space-y-16). */
+  className?: string;
 }) {
   return (
-    <header className="mb-10">
+    <header className={className}>
       <Breadcrumb items={breadcrumb} />
       <div className="mt-4 flex items-start justify-between gap-6 flex-wrap">
         <div className="min-w-0">
@@ -71,7 +74,7 @@ export function SectionHeader({
   actions?: ReactNode;
 }) {
   return (
-    <div className="mb-5 flex items-end justify-between gap-6 flex-wrap">
+    <div className="mb-5 flex items-start justify-between gap-6 flex-wrap">
       <div className="min-w-0">
         <h2 id={id} className="text-[22px] font-semibold tracking-[-0.015em]">
           {title}
@@ -82,7 +85,7 @@ export function SectionHeader({
           </p>
         )}
       </div>
-      {actions && <div className="flex items-center gap-3 shrink-0">{actions}</div>}
+      {actions && <div className="flex items-center gap-3 shrink-0 pt-1">{actions}</div>}
     </div>
   );
 }

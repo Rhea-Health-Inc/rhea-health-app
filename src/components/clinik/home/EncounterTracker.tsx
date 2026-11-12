@@ -42,26 +42,29 @@ export function EncounterTracker() {
           </span>
         }
       />
-      <div className="rounded-2xl bg-card hairline p-8">
-        <ol className="flex items-center gap-2 md:gap-4 overflow-x-auto">
+      <div className="rounded-2xl bg-card hairline px-6 py-6">
+        <ol className="flex">
           {stages.map((stage, i) => (
-            <li key={stage.key} className="flex items-center gap-2 md:gap-4 min-w-0">
-              <div className="flex flex-col items-center min-w-[92px]">
-                <span
-                  className={`w-9 h-9 rounded-full flex items-center justify-center text-[14px] font-medium ${
-                    stage.count > 0
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground"
-                  }`}
-                >
-                  {stage.count}
-                </span>
-                <span className="mt-2 text-[14px] font-medium text-foreground">{stage.key}</span>
-                <span className="text-[12px] text-muted-foreground">{stage.caption}</span>
-              </div>
-              {i < stages.length - 1 && (
-                <span aria-hidden className="flex-1 h-px bg-border min-w-[24px]" />
+            <li key={stage.key} className="relative flex-1 flex flex-col items-center text-center">
+              {/* Connector halves run through the circle centres (18px = half of w-9)
+                  and meet at each circle, so the line is continuous across the card. */}
+              {i > 0 && (
+                <span aria-hidden className="absolute top-[18px] left-0 w-1/2 h-px bg-border" />
               )}
+              {i < stages.length - 1 && (
+                <span aria-hidden className="absolute top-[18px] right-0 w-1/2 h-px bg-border" />
+              )}
+              <span
+                className={`relative w-9 h-9 rounded-full flex items-center justify-center text-[14px] font-medium ${
+                  stage.count > 0
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-primary/10 text-primary"
+                }`}
+              >
+                {stage.count}
+              </span>
+              <span className="mt-2 text-[14px] font-medium text-foreground">{stage.key}</span>
+              <span className="text-[12px] text-muted-foreground">{stage.caption}</span>
             </li>
           ))}
         </ol>

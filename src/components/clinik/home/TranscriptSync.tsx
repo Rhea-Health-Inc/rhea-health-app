@@ -59,16 +59,16 @@ export function TranscriptSync() {
     : "Push latest transcript segments into the structured SOAP note.";
 
   return (
-    <section aria-labelledby="transcript-to-soap">
+    <section aria-labelledby="transcript-to-soap" className="flex flex-col">
       <SectionHeader
         id="transcript-to-soap"
         title="Transcript to SOAP"
         description="Watch a captured conversation become a structured, editable note."
         actions={<span className="text-[13px] text-muted-foreground">Marta Kellner · 8:30 AM</span>}
       />
-      <div className="rounded-2xl bg-card hairline p-8 h-full flex flex-col">
+      <div className="rounded-2xl bg-card hairline p-6 flex-1 flex flex-col">
         <div className="grid md:grid-cols-2 gap-4 flex-1 min-h-0">
-          <div className="rounded-xl bg-muted/40 p-3 overflow-y-auto max-h-[260px]">
+          <div className="rounded-xl bg-muted/40 p-4 overflow-y-auto min-h-0">
             <h3 className="text-[12px] uppercase tracking-wider text-muted-foreground mb-2 font-semibold">
               Transcript
             </h3>
@@ -88,7 +88,7 @@ export function TranscriptSync() {
             </ul>
           </div>
 
-          <div className="rounded-xl bg-card hairline p-3 overflow-y-auto max-h-[260px]">
+          <div className="rounded-xl bg-card hairline p-4 overflow-y-auto min-h-0">
             <div className="text-[12px] uppercase tracking-wider text-muted-foreground mb-2 flex items-center justify-between font-semibold">
               <h3>SOAP note</h3>
               {synced && (
@@ -125,15 +125,15 @@ export function TranscriptSync() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-4">
-          <p role="status" className="text-[14px] text-muted-foreground">
+        <div className="flex items-center justify-between gap-4 mt-4">
+          <p role="status" className="text-[14px] text-muted-foreground min-w-0">
             {statusMessage}
           </p>
           <button
             type="button"
             onClick={sync}
             disabled={syncing}
-            className="text-[14px] px-4 h-9 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition inline-flex items-center gap-1.5 disabled:opacity-60"
+            className="text-[14px] px-4 h-9 shrink-0 whitespace-nowrap rounded-full bg-primary text-primary-foreground hover:opacity-90 transition inline-flex items-center gap-1.5 disabled:opacity-60"
           >
             <RefreshCw aria-hidden className={`w-3.5 h-3.5 ${syncing ? "animate-spin" : ""}`} />
             {syncing ? "Syncing…" : synced ? "Re-sync" : "Sync to SOAP"}
