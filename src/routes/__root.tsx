@@ -4,15 +4,16 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
-import { useAppearance } from "@/hooks/use-appearance";
+import { applyAppearance, readAppearance } from "@/lib/appearance";
 
 function NotFoundComponent() {
   return (
@@ -110,11 +111,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  // Apply the saved appearance on every route — including the auth screens
-  // and 404 page, which live outside the app/admin layouts that also call
-  // this hook. Without it, those pages ignored the saved theme on a cold
-  // load and only picked it up accidentally via client-side navigation.
-  useAppearance();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  // Theme rule: the signed-out screens (sign in, sign up, password reset)
+  // are always light. The saved appearance only takes effect inside the
+  // signed-in workspace (/app, /admin) and is dropped again on sign-out.
+  // This also strips a .dark class left on <html> by client-side
+  // navigation out of the workspace.
+  useEffect(() => {
+    const saved = readAppearance();
+    const inWorkspace = pathname.startsWith("/app") || pathname.startsWith("/admin");
+    applyAppearance(inWorkspace ? saved : { ...saved, theme: "light" });
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>

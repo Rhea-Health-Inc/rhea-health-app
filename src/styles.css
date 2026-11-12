@@ -63,7 +63,7 @@
   --border: oklch(0.925 0 0); /* #EAEAEA */
   --input: oklch(0.925 0 0);
   --ring: oklch(0.46 0.062 158);
-  --onboarding-bg: oklch(0.977 0.008 145); /* #F7F9F6 warm off-white, slight green undertone */
+  --onboarding-bg: oklch(0.977 0.008 145); /* #F7F9F6 warm off-white, slight green undertone. Light only by design: the signed-out screens are always light (see __root.tsx), so no .dark value is defined. */
 }
 
 @layer base {
@@ -218,10 +218,6 @@
   --border: oklch(0.31 0.008 150);
   --input: oklch(0.31 0.008 150);
   --ring: oklch(0.62 0.075 158);
-  /* Dark counterpart of the light onboarding tint: slightly deeper than
-     --background, mirroring the light theme's relationship. Without this,
-     the signup page kept the light --onboarding-bg around dark cards. */
-  --onboarding-bg: oklch(0.175 0.008 150);
 }
 
 .high-contrast {
