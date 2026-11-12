@@ -29,6 +29,11 @@ const CARDS = [
     desc: "Connect EHR, calendar, and secure messaging.",
     to: "/app/settings/integrations" as const,
   },
+  {
+    title: "Practice inbox",
+    desc: "Connect the practice email so patient messages arrive in Messages.",
+    to: "/app/settings/inbox" as const,
+  },
   { title: "Notifications", desc: "Email, in-app, and mobile push.", to: null },
   {
     title: "Privacy & consent",
