@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, X, Undo2 } from "lucide-react";
 import { APPOINTMENTS } from "@/lib/mock";
 import { SectionHeader } from "@/components/clinik/PageHeader";
+import { AiMark } from "@/components/clinik/AiMark";
 import { useReviewQueue, type ReviewItem } from "@/hooks/use-review-queue";
 
 const REVIEW_ITEMS: ReviewItem[] = [
@@ -80,6 +81,7 @@ export function ReviewQueue() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
                   <h3 className="text-[14px] font-medium text-foreground">{r.patient}</h3>
+                  <AiMark variant="icon" />
                   {r.priority === "high" && (
                     <span className="text-[12px] px-1.5 py-0.5 rounded-full bg-[color-mix(in_oklab,var(--color-destructive)_12%,transparent)] text-destructive font-medium">
                       Priority

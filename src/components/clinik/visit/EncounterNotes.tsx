@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { RefreshCw, Sparkles } from "lucide-react";
+import { AiMark } from "@/components/clinik/AiMark";
 import type { EncounterContext } from "@/lib/clinical-outputs";
 import type { NoteFormat } from "@/lib/note-formats";
 
@@ -62,7 +63,10 @@ function SectionEditor({
     <div className="space-y-3">
       {sections.map((s, i) => (
         <div key={s.title} className="rounded-2xl bg-card hairline p-6">
-          <div className="text-[14px] font-medium mb-3">{s.title}</div>
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <div className="text-[14px] font-medium">{s.title}</div>
+            <AiMark />
+          </div>
           <textarea
             value={s.value}
             onChange={(e) =>

@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { APPOINTMENTS } from "@/lib/mock";
 import { PageHeader } from "@/components/clinik/PageHeader";
+import { AiMark } from "@/components/clinik/AiMark";
 import { DOC_STATUS_LABEL, DOC_STATUS_TONE, type DocStatus } from "@/lib/documentation";
 
 export const Route = createFileRoute("/app/documentation")({
@@ -103,7 +104,9 @@ function Documentation() {
               </div>
             </div>
             <div className="col-span-3 text-[14px] text-foreground truncate">{a.reason}</div>
-            <div className="col-span-2 text-[14px] text-muted-foreground">SOAP</div>
+            <div className="col-span-2 text-[14px] text-muted-foreground flex items-center gap-1.5">
+              SOAP <AiMark variant="icon" />
+            </div>
             <div className="col-span-2 text-[14px] text-muted-foreground">Today, {a.time}</div>
             <div className="col-span-1 text-right">
               <span

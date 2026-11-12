@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { RefreshCw, CircleDot } from "lucide-react";
 import { TRANSCRIPT, AI_CARDS } from "@/lib/mock";
 import { SectionHeader } from "@/components/clinik/PageHeader";
+import { AiMark } from "@/components/clinik/AiMark";
 
 type SoapKey = "S" | "O" | "A" | "P";
 type SoapNote = Record<SoapKey, string>;
@@ -90,7 +91,9 @@ export function TranscriptSync() {
 
           <div className="rounded-xl bg-card hairline p-4 overflow-y-auto min-h-0">
             <div className="text-[12px] uppercase tracking-wider text-muted-foreground mb-2 flex items-center justify-between font-semibold">
-              <h3>SOAP note</h3>
+              <h3 className="flex items-center gap-1.5">
+                SOAP note <AiMark variant="icon" />
+              </h3>
               {synced && (
                 <span
                   className={`text-[12px] inline-flex items-center gap-1 ${

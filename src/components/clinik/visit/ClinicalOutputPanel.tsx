@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CheckCircle2, FileDown, Plus, RefreshCw, RotateCcw, Sparkles, Trash2 } from "lucide-react";
+import { AiMark } from "@/components/clinik/AiMark";
 import {
   FIELD_SOURCE_LABEL,
   FIELD_SOURCE_TONE,
@@ -99,7 +100,9 @@ export function ClinicalOutputPanel({ kind, ctx, actor, onNotify }: ClinicalOutp
       <div className="rounded-2xl bg-card hairline p-6">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="min-w-0">
-            <div className="text-[15px] font-medium">{copy.title}</div>
+            <div className="text-[15px] font-medium flex items-center gap-2.5">
+              {copy.title} <AiMark />
+            </div>
             <p className="text-[14px] text-muted-foreground mt-1 max-w-2xl leading-relaxed">
               {copy.description}
             </p>

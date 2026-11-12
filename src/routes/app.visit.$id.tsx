@@ -15,8 +15,11 @@ import {
   Pill,
   Activity,
   Stethoscope,
+  ListChecks,
+  Layers,
   type LucideIcon,
 } from "lucide-react";
+import { AiMark } from "@/components/clinik/AiMark";
 import { APPOINTMENTS, TRANSCRIPT, AI_CARDS, HISTORY, CLINICIAN } from "@/lib/mock";
 import {
   DOC_STATUS_LABEL,
@@ -443,7 +446,7 @@ function AiPanel({ active }: { active: boolean }) {
       body: <List items={AI_CARDS.conditions} />,
     },
     { title: "Tests mentioned", icon: Activity, body: <List items={AI_CARDS.tests} /> },
-    { title: "Follow-up tasks", icon: Sparkles, body: <List items={AI_CARDS.followups} /> },
+    { title: "Follow-up tasks", icon: ListChecks, body: <List items={AI_CARDS.followups} /> },
     {
       title: "Potential missing info",
       icon: AlertTriangle,
@@ -451,7 +454,7 @@ function AiPanel({ active }: { active: boolean }) {
     },
     {
       title: "Suggested sections",
-      icon: Sparkles,
+      icon: Layers,
       body: (
         <div className="flex flex-wrap gap-1.5">
           {AI_CARDS.suggested.map((s) => (
@@ -484,6 +487,7 @@ function AiPanel({ active }: { active: boolean }) {
                 <div className="text-[12px] uppercase tracking-wider text-muted-foreground">
                   {c.title}
                 </div>
+                <AiMark variant="icon" className="ml-auto" />
               </div>
               {c.body}
             </div>
@@ -631,8 +635,8 @@ function Documentation({
     <div className="max-w-5xl mx-auto w-full px-12 py-14">
       {/* Header */}
       <div className="mb-8">
-        <div className="text-[12px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/80">
-          Generated documentation
+        <div className="text-[12px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/80 flex items-center gap-1.5">
+          <AiMark variant="icon" /> Generated documentation
         </div>
         <div className="flex items-start justify-between gap-6 mt-1">
           <div>
@@ -825,6 +829,7 @@ function SoapEditor({
           {letter}
         </span>
         <div className="text-[14px] font-medium">{title}</div>
+        <AiMark className="ml-auto" />
       </div>
       <textarea
         value={value}
