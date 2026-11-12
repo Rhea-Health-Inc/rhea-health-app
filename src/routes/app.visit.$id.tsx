@@ -464,7 +464,7 @@ function AiPanel({ active }: { active: boolean }) {
     },
   ];
   return (
-    <aside className="col-span-3 p-6 overflow-y-auto max-h-[calc(100vh-4rem)] bg-[color-mix(in_oklab,var(--color-background)_50%,white)]">
+    <aside className="col-span-3 p-6 overflow-y-auto max-h-[calc(100vh-4rem)] bg-[color-mix(in_oklab,var(--color-background)_50%,var(--color-surface))]">
       <div className="flex items-center gap-2 mb-4">
         <Sparkles className="w-4 h-4 text-primary" />
         <div className="text-[14px] font-medium">AI Clinical Assistant</div>
