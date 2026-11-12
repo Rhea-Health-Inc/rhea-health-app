@@ -218,6 +218,10 @@
   --border: oklch(0.31 0.008 150);
   --input: oklch(0.31 0.008 150);
   --ring: oklch(0.62 0.075 158);
+  /* Dark counterpart of the light onboarding tint: slightly deeper than
+     --background, mirroring the light theme's relationship. Without this,
+     the signup page kept the light --onboarding-bg around dark cards. */
+  --onboarding-bg: oklch(0.175 0.008 150);
 }
 
 .high-contrast {

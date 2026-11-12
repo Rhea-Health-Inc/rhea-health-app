@@ -12,6 +12,7 @@ import type { ReactNode } from "react";
 import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
+import { useAppearance } from "@/hooks/use-appearance";
 
 function NotFoundComponent() {
   return (
@@ -109,6 +110,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  // Apply the saved appearance on every route — including the auth screens
+  // and 404 page, which live outside the app/admin layouts that also call
+  // this hook. Without it, those pages ignored the saved theme on a cold
+  // load and only picked it up accidentally via client-side navigation.
+  useAppearance();
 
   return (
     <QueryClientProvider client={queryClient}>
