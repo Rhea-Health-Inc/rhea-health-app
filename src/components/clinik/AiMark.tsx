@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
  * The single provenance marker for anything Rhea's AI generated: the
  * Sparkles glyph, in brand green. Use the labelled chip on generated
  * documents and outputs; use the icon-only mark in dense lists and card
- * headers. If the AI marker ever changes, it changes here — nowhere else.
+ * headers. If the AI marker ever changes, it changes here, nowhere else.
  */
 export function AiMark({
   variant = "chip",

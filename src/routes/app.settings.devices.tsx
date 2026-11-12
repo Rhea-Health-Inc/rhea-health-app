@@ -59,7 +59,7 @@ function Devices() {
   const register = (device: RecordingDevice) => {
     addDevice(device);
     setAdding(false);
-    flash(`${device.name} registered — pairing now`);
+    flash(`${device.name} registered, pairing now`);
     // Simulated pairing handshake: the device settles to Connected shortly
     // after registration, with fresh connection/sync timestamps.
     timers.current.push(
@@ -420,7 +420,7 @@ function AddDeviceDialog({
         const identified = identifyDevice(serialValue);
         if (!identified) {
           setError(
-            "Rhea could not verify this device. Check the serial number and try again — only genuine Rhea-approved devices can be registered.",
+            "Rhea could not verify this device. Check the serial number and try again. Only genuine Rhea-approved devices can be registered.",
           );
           setStep(via === "bluetooth" ? "bluetooth" : "manual");
           return;
@@ -762,7 +762,7 @@ function AddDeviceDialog({
         {step === "name" && found && (
           <div className="mt-5">
             <p className="text-[14px] text-muted-foreground leading-relaxed">
-              Give the device a name you'll recognise — many clinicians name it after the room it
+              Give the device a name you'll recognise. Many clinicians name it after the room it
               lives in.
             </p>
             <label className="block mt-4">

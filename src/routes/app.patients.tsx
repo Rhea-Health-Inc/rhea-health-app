@@ -119,7 +119,7 @@ function Patients() {
                   <div className="min-w-0">
                     <div className="text-[14px] font-medium truncate">{p.name}</div>
                     <div className="text-[14px] text-muted-foreground">
-                      {p.age || "—"} · {p.sex} · {p.mrn}
+                      {p.age || "N/A"} · {p.sex} · {p.mrn}
                     </div>
                   </div>
                   {p.source === "manual" && (

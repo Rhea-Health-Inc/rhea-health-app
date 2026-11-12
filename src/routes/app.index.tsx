@@ -13,7 +13,7 @@ export const Route = createFileRoute("/app/")({
 });
 
 function Home() {
-  // CLINICIAN.name includes the "Dr." title ("Dr. Sarah Chen") — greet by surname.
+  // CLINICIAN.name includes the "Dr." title ("Dr. Sarah Chen"); greet by surname.
   const surname =
     CLINICIAN.name
       .replace(/^Dr\.\s*/, "")

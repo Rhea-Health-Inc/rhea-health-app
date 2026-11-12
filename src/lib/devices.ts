@@ -1,5 +1,5 @@
 // Recording devices: the clinician's Rhea-approved hardware, registered to
-// their account. Mock store for the demo — persisted to localStorage like
+// their account. Mock store for the demo, persisted to localStorage like
 // the session and appearance preferences, with a small subscribe/notify so
 // every view stays in sync.
 
@@ -135,7 +135,7 @@ export function identifyDevice(serial: string): IdentifiedDevice | null {
   return { model: "Rhea Recorder", modelId: "rhea-recorder", firmware: "2.4.1" };
 }
 
-/** "just now", "4 min ago", "Yesterday", "12 Mar" — for device timestamps. */
+/** "just now", "4 min ago", "Yesterday", "12 Mar", for device timestamps. */
 export function relativeTime(iso: string | null): string {
   if (!iso) return "Never";
   const then = new Date(iso).getTime();

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   BellOff,
@@ -27,21 +27,16 @@ function PracticeInbox() {
     window.setTimeout(() => setToast(null), 2200);
   };
 
-  const connect = (provider: "Google Workspace" | "Microsoft 365") => {
-    update({ connected: true, provider, lastSyncMins: 0 });
-    flash(`${provider} inbox connected`);
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-12 py-14">
       <SettingsHeader
         title="Practice inbox"
-        description="Connect the practice email inbox so messages from patients arrive in Messages, matched to their records — instead of sitting in a shared mailbox."
+        description="Connect the practice email inbox so messages from patients arrive in Messages, matched to their records, instead of sitting in a shared mailbox."
       />
 
       <Section
-        title="Connected account"
-        description="Rhea reads this inbox with read-only access and imports only mail from patients' verified addresses."
+        title="Connected email"
+        description="The connection itself is managed in Integrations. Rhea reads this inbox with read-only access and imports only mail from patients' verified addresses."
       >
         {inbox.connected ? (
           <div className="flex items-center gap-5 flex-wrap">
@@ -79,23 +74,15 @@ function PracticeInbox() {
         ) : (
           <div>
             <p className="text-[15px] text-muted-foreground leading-relaxed">
-              No inbox connected. Patient emails currently stay in your regular mailbox and never
+              No email connected. Patient emails currently stay in your regular mailbox and never
               reach Messages.
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <button
-                onClick={() => connect("Google Workspace")}
-                className="h-11 px-6 rounded-full bg-primary text-primary-foreground text-[14px] font-medium hover:opacity-90 transition"
-              >
-                Connect Google Workspace
-              </button>
-              <button
-                onClick={() => connect("Microsoft 365")}
-                className="h-11 px-6 rounded-full hairline bg-card text-[14px] font-medium hover:bg-muted transition"
-              >
-                Connect Microsoft 365
-              </button>
-            </div>
+            <Link
+              to="/app/settings/integrations"
+              className="mt-5 inline-flex h-11 items-center px-6 rounded-full bg-primary text-primary-foreground text-[14px] font-medium hover:opacity-90 transition"
+            >
+              Connect in Integrations
+            </Link>
           </div>
         )}
       </Section>
@@ -113,7 +100,7 @@ function PracticeInbox() {
           <InfoRow
             icon={MailCheck}
             title="Unmatched mail is never imported"
-            body="Mail from anyone else — labs, insurers, personal contacts — stays in your email where it belongs. Rhea never copies it."
+            body="Mail from anyone else (labs, insurers, personal contacts) stays in your email where it belongs. Rhea never copies it."
           />
           <InfoRow
             icon={ScanSearch}
@@ -131,7 +118,7 @@ function PracticeInbox() {
           <InfoRow
             icon={Lock}
             title="Encrypted end to end"
-            body="Messages are encrypted in transit and at rest inside Rhea, and the connection uses read-only access — Rhea cannot send or delete mail from your mailbox."
+            body="Messages are encrypted in transit and at rest inside Rhea, and the connection uses read-only access, so Rhea cannot send or delete mail from your mailbox."
           />
           <InfoRow
             icon={FileCheck2}
@@ -146,7 +133,7 @@ function PracticeInbox() {
           <InfoRow
             icon={BellOff}
             title="Notifications carry no health details"
-            body="When you reply, the patient gets a plain email saying they have a new secure message — the content stays behind their Rhea sign-in."
+            body="When you reply, the patient gets a plain email saying they have a new secure message, and the content stays behind their Rhea sign-in."
           />
           <InfoRow
             icon={Users}

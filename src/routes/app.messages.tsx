@@ -110,7 +110,7 @@ function Messages() {
           <>
             <span className="h-2 w-2 rounded-full bg-amber-500 shrink-0" />
             <p className="text-[13px] text-muted-foreground">
-              Practice inbox not connected — patient emails won&apos;t appear here.
+              Practice inbox not connected. Patient emails won&apos;t appear here.
             </p>
           </>
         )}
@@ -314,7 +314,7 @@ function Messages() {
               </button>
             </div>
             <p className="mt-2.5 px-1 text-[12px] text-muted-foreground">
-              The patient is notified by email — the notification itself never contains health
+              The patient is notified by email, and the notification itself never contains health
               details.
             </p>
           </div>

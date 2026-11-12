@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Check, Settings2, Plug } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check, Settings2, Plug, Mail } from "lucide-react";
 import { SettingsHeader } from "@/components/clinik/SettingsUI";
 import { useState } from "react";
+import { useInboxConnection } from "@/hooks/use-inbox-connection";
 
 export const Route = createFileRoute("/app/settings/integrations")({
   component: Integrations,
@@ -71,6 +72,22 @@ function Integrations() {
   const [connected, setConnected] = useState<Record<string, boolean>>({ "google-cal": true });
   const [pending, setPending] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const { inbox, update: updateInbox } = useInboxConnection();
+  const [inboxPending, setInboxPending] = useState<string | null>(null);
+
+  const connectInbox = (provider: "Google Workspace" | "Microsoft 365") => {
+    setInboxPending(provider);
+    window.setTimeout(() => {
+      updateInbox({ connected: true, provider, lastSyncMins: 0 });
+      setInboxPending(null);
+      flash(`Practice inbox connected (${provider})`);
+    }, 900);
+  };
+
+  const disconnectInbox = () => {
+    updateInbox({ connected: false });
+    flash("Practice inbox disconnected");
+  };
 
   const flash = (m: string) => {
     setToast(m);
@@ -99,6 +116,77 @@ function Integrations() {
         title="Integrations"
         description="Connect Rhea to your EHR, calendar, and secure messaging tools. Changes sync in real time."
       />
+
+      <div className="mb-12">
+        <h2 className="text-[22px] font-semibold tracking-[-0.015em] mb-5">Email</h2>
+        <div className="rounded-2xl bg-card hairline p-6 flex flex-col">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-muted text-foreground flex items-center justify-center">
+              <Mail className="w-4.5 h-4.5" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <div className="text-[14px] font-medium">Practice inbox</div>
+                {inbox.connected && (
+                  <span className="text-[12px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-[color-mix(in_oklab,var(--color-success)_15%,transparent)] text-[var(--color-success)] inline-flex items-center gap-1">
+                    <Check className="w-3 h-3" /> Connected
+                  </span>
+                )}
+              </div>
+              <div className="text-[14px] text-muted-foreground mt-1">
+                Connect the practice email inbox so patient emails arrive in Messages, matched to
+                their records.
+              </div>
+              {inbox.connected && (
+                <div className="text-[14px] mt-2">
+                  {inbox.address}
+                  <span className="text-muted-foreground">
+                    {" "}
+                    · {inbox.provider} · Read-only access
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="mt-4 flex items-center gap-2 flex-wrap">
+            {inbox.connected ? (
+              <>
+                <Link
+                  to="/app/settings/inbox"
+                  className="h-10 px-4 rounded-full hairline bg-card text-[14px] hover:bg-muted transition inline-flex items-center gap-1.5"
+                >
+                  <Settings2 className="w-3.5 h-3.5" /> Inbox settings
+                </Link>
+                <button
+                  onClick={disconnectInbox}
+                  className="h-10 px-4 rounded-full hairline bg-card text-[14px] text-muted-foreground hover:text-foreground hover:bg-muted transition"
+                >
+                  Disconnect
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => connectInbox("Google Workspace")}
+                  disabled={inboxPending !== null}
+                  className="h-10 px-5 rounded-full bg-primary text-primary-foreground text-[14px] hover:opacity-90 transition inline-flex items-center gap-1.5 disabled:opacity-60"
+                >
+                  <Plug className="w-3.5 h-3.5" />
+                  {inboxPending === "Google Workspace" ? "Connecting…" : "Connect Google Workspace"}
+                </button>
+                <button
+                  onClick={() => connectInbox("Microsoft 365")}
+                  disabled={inboxPending !== null}
+                  className="h-10 px-5 rounded-full hairline bg-card text-[14px] hover:bg-muted transition inline-flex items-center gap-1.5 disabled:opacity-60"
+                >
+                  <Plug className="w-3.5 h-3.5" />
+                  {inboxPending === "Microsoft 365" ? "Connecting…" : "Connect Microsoft 365"}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
 
       {groups.map((g) => (
         <div key={g} className="mb-12">

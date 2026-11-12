@@ -664,7 +664,7 @@ function Documentation({
         </div>
       </div>
 
-      {/* Action bar — two clear groups, wraps cleanly */}
+      {/* Action bar: two clear groups, wraps cleanly */}
       <div className="mb-6 rounded-2xl bg-card hairline p-3 flex flex-wrap items-center gap-2">
         <ActionBtn icon={RefreshCw} onClick={() => flash("Regenerating note…")}>
           Regenerate

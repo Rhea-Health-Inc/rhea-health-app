@@ -67,12 +67,12 @@ export const SEED_CONVERSATIONS: Conversation[] = [
       },
       {
         from: "patient",
-        text: "Morning readings are in — 128/82, 126/80, 131/84. I added them to the form as well.",
+        text: "Morning readings are in: 128/82, 126/80, 131/84. I added them to the form as well.",
         time: "Today 8:47 AM",
       },
       {
         from: "patient",
-        text: "Also — is it okay to restart my evening walks?",
+        text: "Also, is it okay to restart my evening walks?",
         time: "Today 9:12 AM",
       },
     ],
@@ -107,7 +107,7 @@ export const SEED_CONVERSATIONS: Conversation[] = [
       },
       {
         from: "clinician",
-        text: "Of course — I can offer Friday 10:30 AM or Monday 9:00 AM. Which suits you better?",
+        text: "Of course. I can offer Friday 10:30 AM or Monday 9:00 AM. Which suits you better?",
         time: "Yesterday 3:52 PM",
       },
       { from: "patient", text: "Friday 10:30 works, thank you!", time: "Yesterday 4:05 PM" },
@@ -128,7 +128,7 @@ export const SEED_CONVERSATIONS: Conversation[] = [
       },
       {
         from: "clinician",
-        text: "Confirmed — see you Tuesday at 9:30 AM.",
+        text: "Confirmed, see you Tuesday at 9:30 AM.",
         time: "Yesterday 11:40 AM",
       },
       { from: "patient", text: "Thanks, Doctor. See you then.", time: "Yesterday 11:41 AM" },
@@ -175,7 +175,7 @@ export const SEED_CONVERSATIONS: Conversation[] = [
       },
       {
         from: "clinician",
-        text: "Sent securely this morning — let us know if they need anything else.",
+        text: "Sent securely this morning. Let us know if they need anything else.",
         time: "Mon 10:26 AM",
       },
     ],
@@ -211,7 +211,7 @@ export function loadInbox(): InboxConnection {
     const raw = localStorage.getItem(INBOX_KEY);
     if (raw) return { ...DEFAULT_INBOX, ...(JSON.parse(raw) as Partial<InboxConnection>) };
   } catch {
-    /* storage unavailable — fall through to the default */
+    /* storage unavailable: fall through to the default */
   }
   return DEFAULT_INBOX;
 }
@@ -220,6 +220,6 @@ export function saveInbox(conn: InboxConnection) {
   try {
     localStorage.setItem(INBOX_KEY, JSON.stringify(conn));
   } catch {
-    /* storage unavailable — state still updates in memory */
+    /* storage unavailable: state still updates in memory */
   }
 }

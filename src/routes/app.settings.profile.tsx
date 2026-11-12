@@ -77,7 +77,7 @@ function EditProfile() {
   const blur = (k: string) => setTouched((s) => ({ ...s, [k]: true }));
 
   const displayName =
-    `Dr. ${form.preferredName.trim() || form.firstName.trim() || "—"} ${form.lastName.trim()}`.trim();
+    `Dr. ${form.preferredName.trim() || form.firstName.trim() || ""} ${form.lastName.trim()}`.trim();
 
   const filteredTz = TIMEZONES.filter((t) => t.toLowerCase().includes(tzQuery.toLowerCase()));
 

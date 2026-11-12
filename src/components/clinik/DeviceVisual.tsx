@@ -4,7 +4,7 @@ import type { DeviceStatus } from "@/lib/devices";
  * Visual representation of a registered device, keyed by the device's
  * modelId. Models with a render get the 3D-style illustration; any other
  * model falls back to its flat product image treatment. When Rhea ships
- * real per-model assets, they slot into this registry — the rest of the
+ * real per-model assets, they slot into this registry; the rest of the
  * Devices UI does not change.
  */
 export function DeviceVisual({
