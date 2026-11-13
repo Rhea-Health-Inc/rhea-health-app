@@ -19,6 +19,9 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/clinik/Logo";
 import { WorkspaceSwitcher } from "@/components/clinik/WorkspaceSwitcher";
+import { NotificationsPanel } from "@/components/clinik/NotificationsPanel";
+import { useNotifications } from "@/hooks/use-notifications";
+import type { AppNotification } from "@/lib/notifications";
 
 import { CLINICIAN, APPOINTMENTS } from "@/lib/mock";
 import { signOut } from "@/lib/auth";
@@ -71,6 +74,8 @@ const NAV_GROUPS: NavGroup[] = [
 
 function AppLayout() {
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const { notifications, unreadCount, markRead, markAllRead } = useNotifications();
   const { appearance } = useAppearance();
   const practice = usePractice();
   const isOrgAdmin =
@@ -88,15 +93,28 @@ function AppLayout() {
         e.preventDefault();
         setPaletteOpen((o) => !o);
       }
-      if (e.key === "Escape") setPaletteOpen(false);
+      if (e.key === "Escape") {
+        setPaletteOpen(false);
+        setNotifOpen(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    setNotifOpen(false);
+  }, [pathname]);
+
   const handleSignOut = () => {
     signOut();
     navigate({ to: "/signin" });
+  };
+
+  const handleSelectNotification = (n: AppNotification) => {
+    markRead(n.id);
+    setNotifOpen(false);
+    navigate({ to: n.to });
   };
 
   return (
@@ -105,11 +123,19 @@ function AppLayout() {
       <aside
         className={`${collapsed ? "w-[72px]" : "w-[260px]"} shrink-0 h-screen sticky top-0 flex flex-col border-r border-border/70 bg-[color-mix(in_oklab,var(--color-background)_60%,var(--color-surface))]`}
       >
-        <div className={`h-[72px] flex items-center ${collapsed ? "px-4 justify-center" : "px-5"}`}>
+        <div className={collapsed ? "px-4 pt-5 flex justify-center" : "px-5 pt-5 pb-2"}>
           {collapsed ? (
             <span className="text-[15px] font-semibold text-primary">R</span>
           ) : (
-            <Logo height={32} />
+            <>
+              <Logo height={30} />
+              <div
+                className="mt-3 text-[16px] font-semibold tracking-[-0.01em] leading-snug"
+                title={CLINICIAN.hospital}
+              >
+                {CLINICIAN.hospital}
+              </div>
+            </>
           )}
         </div>
 
@@ -172,47 +198,63 @@ function AppLayout() {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-border/70 space-y-1.5">
-          <div className={`px-3 py-2 ${collapsed ? "hidden" : ""}`}>
-            <div className="text-[12px] uppercase tracking-[0.12em] text-muted-foreground/80 font-semibold">
-              Hospital
+        <div className="p-3">
+          <div className="relative rounded-2xl bg-card hairline p-2">
+            <div
+              className={`flex items-center gap-3 px-2 py-1.5 ${collapsed ? "justify-center" : ""}`}
+            >
+              <img
+                src={CLINICIAN.photo}
+                alt={CLINICIAN.name}
+                className="w-9 h-9 rounded-full object-cover shrink-0"
+              />
+              {!collapsed && (
+                <div className="min-w-0 flex-1">
+                  <div className="text-[14px] font-medium truncate">{CLINICIAN.name}</div>
+                  <div className="text-[13px] text-muted-foreground truncate">{CLINICIAN.role}</div>
+                </div>
+              )}
+              {!collapsed && (
+                <button
+                  aria-label={
+                    unreadCount > 0 ? `Notifications, ${unreadCount} unread` : "Notifications"
+                  }
+                  aria-expanded={notifOpen}
+                  onClick={() => setNotifOpen((o) => !o)}
+                  className="relative w-9 h-9 rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition flex items-center justify-center shrink-0"
+                >
+                  <Bell className="w-[18px] h-[18px]" />
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-primary-foreground text-[11px] font-semibold flex items-center justify-center">
+                      {unreadCount}
+                    </span>
+                  )}
+                </button>
+              )}
             </div>
-            <div className="text-[14px] text-foreground truncate">{CLINICIAN.hospital}</div>
-          </div>
-          <div
-            className={`flex items-center gap-3 px-3 py-2 rounded-full hover:bg-muted transition cursor-pointer ${collapsed ? "justify-center" : ""}`}
-          >
-            <img
-              src={CLINICIAN.photo}
-              alt={CLINICIAN.name}
-              className="w-8 h-8 rounded-full object-cover"
-            />
-            {!collapsed && (
-              <div className="min-w-0 flex-1">
-                <div className="text-[14px] font-medium truncate">{CLINICIAN.name}</div>
-                <div className="text-[14px] text-muted-foreground truncate">{CLINICIAN.role}</div>
-              </div>
+            {!collapsed && <div className="mx-2 my-1 border-t border-border/60" />}
+            <div className="flex items-center gap-1">
+              <button
+                className={`flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-full hover:bg-muted transition inline-flex items-center gap-2 ${collapsed ? "hidden" : ""}`}
+              >
+                <LifeBuoy className="w-3.5 h-3.5" /> Help
+              </button>
+              <button
+                onClick={handleSignOut}
+                className="flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-full hover:bg-muted transition inline-flex items-center justify-center gap-2"
+              >
+                <LogOut className="w-3.5 h-3.5 shrink-0" /> {!collapsed && "Sign out"}
+              </button>
+            </div>
+            {notifOpen && !collapsed && (
+              <NotificationsPanel
+                notifications={notifications}
+                unreadCount={unreadCount}
+                onSelect={handleSelectNotification}
+                onMarkAllRead={markAllRead}
+                onClose={() => setNotifOpen(false)}
+              />
             )}
-            <button
-              aria-label="Notifications"
-              className={`relative rounded-full p-1.5 -m-1 hover:bg-muted text-muted-foreground hover:text-foreground transition ${collapsed ? "hidden" : ""}`}
-            >
-              <Bell className="w-4 h-4" />
-              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-primary" />
-            </button>
-          </div>
-          <div className="flex items-center gap-1">
-            <button
-              className={`flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-full hover:bg-muted transition inline-flex items-center gap-2 ${collapsed ? "hidden" : ""}`}
-            >
-              <LifeBuoy className="w-3.5 h-3.5" /> Help
-            </button>
-            <button
-              onClick={handleSignOut}
-              className="flex-1 text-[14px] text-muted-foreground hover:text-foreground px-3 py-2 rounded-full hover:bg-muted transition inline-flex items-center gap-2"
-            >
-              <LogOut className="w-3.5 h-3.5 shrink-0" /> {!collapsed && "Sign out"}
-            </button>
           </div>
         </div>
       </aside>
