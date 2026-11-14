@@ -15,6 +15,7 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import { WorkspaceSwitcher } from "@/components/clinik/WorkspaceSwitcher";
+import { Logo } from "@/components/clinik/Logo";
 import {
   ADMIN_NAV,
   canAccessAdmin,
@@ -120,15 +121,19 @@ function AdminLayout() {
       <aside
         className={`${collapsed ? "w-[72px]" : "w-[260px]"} shrink-0 h-screen sticky top-0 flex flex-col border-r border-border/70 bg-[color-mix(in_oklab,var(--color-background)_60%,var(--color-surface))]`}
       >
-        <div
-          className={`h-[72px] flex items-center ${collapsed ? "px-4 justify-center" : "px-5"} gap-3`}
-        >
-          <OrgMark practice={practice} compact />
-          {!collapsed && (
-            <div className="min-w-0">
-              <div className="text-[14px] font-semibold truncate">Rhea Health</div>
-              <div className="text-[12px] text-muted-foreground truncate">{orgName}</div>
-            </div>
+        <div className={collapsed ? "px-4 pt-5 flex justify-center" : "px-5 pt-5 pb-2"}>
+          {collapsed ? (
+            <span className="text-[15px] font-semibold text-primary">R</span>
+          ) : (
+            <>
+              <Logo height={30} />
+              <div
+                className="mt-3 text-[16px] font-semibold tracking-[-0.01em] leading-snug"
+                title={orgName}
+              >
+                {orgName}
+              </div>
+            </>
           )}
         </div>
 
@@ -237,7 +242,6 @@ export function AdminOrgHeader() {
       <div className="px-12 py-7 flex items-center gap-5 flex-wrap">
         <OrgMark practice={practice} />
         <div className="min-w-0">
-          <div className="text-[13px] font-medium text-muted-foreground">Rhea Health</div>
           <div className="text-[22px] font-semibold tracking-[-0.015em] truncate">
             {practice?.name ?? "Your organization"}
           </div>
